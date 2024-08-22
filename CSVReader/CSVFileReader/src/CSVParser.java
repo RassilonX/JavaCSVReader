@@ -31,7 +31,7 @@ public class CSVParser {
             }
         }
 
+        customers.remove(0);
         return customers;
     }
-
 }

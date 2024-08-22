@@ -11,6 +11,16 @@ public class Main {
         System.out.println("Parsing CSV file located at: " + filePath);
         List<Customer> customers = CSVParser.ParseCSV(filePath);
 
-        System.out.println("All data parsed Successfully");
+        String databaseUrl = "bibble";
+        boolean result = APICaller.SendCustomerDataToDatabase(customers, databaseUrl);
+
+        if(result)
+        {
+            System.out.println("All data parsed Successfully");
+        }
+        else
+        {
+            System.out.println("There were errors parsing the data");
+        }
     }
 }
