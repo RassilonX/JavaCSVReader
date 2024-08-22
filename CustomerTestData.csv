@@ -1,0 +1,6 @@
+"Customer Ref","Customer Name","Address Line 1","Address Line 2","Town","County","Country","Postcode"
+"CUST001","John Smith","123 Main St","Apt 101","Anytown","Anystate","USA","12345"
+"CUST002","Jane Doe","456 Elm St","","Othertown","Othstate","Canada","M5A 1A1"
+"CUST003","Bob Johnson","789 Oak St","Suite 202","Thistown","Thatstate","UK","NW1 1AA"
+"CUST004","Alice Brown","321 Pine St","","Forthtown","Fourthstate","Australia","2000"
+"CUST005","Mike Davis","901 Maple St","Apt 303","Fivtown","Fivstate","Germany","10115"
