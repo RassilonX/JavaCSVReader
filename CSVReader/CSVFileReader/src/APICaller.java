@@ -1,44 +1,44 @@
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
+
 
 public class APICaller {
-    public static boolean SendCustomerDataToDatabase(List<Customer> customers, String url) throws IOException
-    {
-        CloseableHttpClient httpClient = HttpClients.createDefault();
+    public static boolean SendCustomerDataToDatabase(List<Customer> customers, String url) throws IOException {
+        boolean result = true;
 
         for (Customer customer : customers) {
-            HttpPost post = new HttpPost("https://example.com/api/endpoint");
-            String json = "{\"customerRef\":\"" + customer.getCustomerRef() + "\","
-                    + "\"customerName\":\"" + customer.getCustomerName() + "\","
-                    + "\"addressLine1\":\"" + customer.getAddressLine1() + "\","
-                    + "\"addressLine2\":\"" + customer.getAddressLine2() + "\","
-                    + "\"town\":\"" + customer.getTown() + "\","
-                    + "\"county\":\"" + customer.getCounty() + "\","
-                    + "\"country\":\"" + customer.getCountry() + "\","
-                    + "\"postcode\":\"" + customer.getPostcode() + "\"}";
-            StringEntity entity = new StringEntity(json);
-            post.setEntity(entity);
-            post.setHeader("Accept", "application/json");
-            post.setHeader("Content-type", "application/json");
+            URL apiUrl = new URL(url);
+            HttpURLConnection con = (HttpURLConnection) apiUrl.openConnection();
+            con.setRequestMethod("POST");
+            con.setRequestProperty("Content-Type", "application/json; utf-8");
+            con.setRequestProperty("Accept", "application/json");
+            con.setDoOutput(true);
 
-            CloseableHttpResponse response = httpClient.execute(post);
-            try {
-                System.out.println(response.getStatusLine().getStatusCode());
-                HttpEntity responseEntity = response.getEntity();
-                System.out.println(EntityUtils.toString(responseEntity));
-            } finally {
-                response.close();
+            String json = "{\"CustomerRef\":\"" + customer.getCustomerRef() + "\","
+                    + "\"CustomerName\":\"" + customer.getCustomerName() + "\","
+                    + "\"AddressLine1\":\"" + customer.getAddressLine1() + "\","
+                    + "\"AddressLine2\":\"" + customer.getAddressLine2() + "\","
+                    + "\"Town\":\"" + customer.getTown() + "\","
+                    + "\"County\":\"" + customer.getCounty() + "\","
+                    + "\"Country\":\"" + customer.getCountry() + "\","
+                    + "\"Postcode\":\"" + customer.getPostcode() + "\"}";
+
+            try (DataOutputStream os = new DataOutputStream(con.getOutputStream())) {
+                os.writeBytes(json);
+                os.flush();
+            }
+
+            int status = con.getResponseCode();
+
+            if(status != 200){
+                result = false;
+                System.out.println(customer.getCustomerRef() + " was not inserted into the database");
             }
         }
-        return true;
+        return result;
     }
-
 }
