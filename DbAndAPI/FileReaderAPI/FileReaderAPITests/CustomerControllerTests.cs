@@ -4,7 +4,6 @@ using FileReaderAPI.Controllers;
 using Moq;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
-using Castle.Core.Resource;
 
 namespace FileReaderAPITests;
 
