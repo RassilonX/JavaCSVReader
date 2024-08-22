@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D67879E9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseTests", "FileReaderAPIIntegrationTests\DatabaseTests.csproj", "{43ACB289-D280-46CE-9070-74B3843E4536}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileReaderAPITests", "FileReaderAPITests\FileReaderAPITests.csproj", "{99B6FB86-D37F-4C83-AE12-4C509B4DA596}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,12 +31,17 @@ Global
 		{43ACB289-D280-46CE-9070-74B3843E4536}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43ACB289-D280-46CE-9070-74B3843E4536}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43ACB289-D280-46CE-9070-74B3843E4536}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99B6FB86-D37F-4C83-AE12-4C509B4DA596}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99B6FB86-D37F-4C83-AE12-4C509B4DA596}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99B6FB86-D37F-4C83-AE12-4C509B4DA596}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99B6FB86-D37F-4C83-AE12-4C509B4DA596}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{43ACB289-D280-46CE-9070-74B3843E4536} = {D67879E9-FC82-425B-A307-775F9CE717D1}
+		{99B6FB86-D37F-4C83-AE12-4C509B4DA596} = {D67879E9-FC82-425B-A307-775F9CE717D1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BD05B50F-1B7F-4B20-AE2F-E68CF86B960F}
