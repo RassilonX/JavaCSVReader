@@ -13,14 +13,14 @@ public class CSVParser {
             while ((line = br.readLine()) != null) {
                 String[] columns = line.split(",");
                 if (columns.length == 8) {
-                    String customerRef = columns[0];
-                    String customerName = columns[1];
-                    String addressLine1 = columns[2];
-                    String addressLine2 = columns[3];
-                    String town = columns[4];
-                    String county = columns[5];
-                    String country = columns[6];
-                    String postcode = columns[7];
+                    String customerRef = columns[0].replaceAll("\"", "");
+                    String customerName = columns[1].replaceAll("\"", "");
+                    String addressLine1 = columns[2].replaceAll("\"", "");
+                    String addressLine2 = columns[3].replaceAll("\"", "");
+                    String town = columns[4].replaceAll("\"", "");
+                    String county = columns[5].replaceAll("\"", "");
+                    String country = columns[6].replaceAll("\"", "");
+                    String postcode = columns[7].replaceAll("\"", "");
                     customers.add(new Customer(
                             customerRef, customerName, addressLine1, addressLine2, town, county, country, postcode
                     ));

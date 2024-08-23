@@ -15,15 +15,6 @@ public class APICaller {
         boolean result = true;
 
         for (Customer customer : customers) {
-            String json = "{\"customerRef\":\"" + customer.getCustomerRef() + "\","
-                    + "\"customerName\":\"" + customer.getCustomerName() + "\","
-                    + "\"addressLine1\":\"" + customer.getAddressLine1() + "\","
-                    + "\"addressLine2\":\"" + customer.getAddressLine2() + "\","
-                    + "\"town\":\"" + customer.getTown() + "\","
-                    + "\"county\":\"" + customer.getCounty() + "\","
-                    + "\"country\":\"" + customer.getCountry() + "\","
-                    + "\"postcode\":\"" + customer.getPostcode() + "\"}";
-
             // Create a JSONObject instance
             JSONObject jsonObject = new JSONObject();
 
