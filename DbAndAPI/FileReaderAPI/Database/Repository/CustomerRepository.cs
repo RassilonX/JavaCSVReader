@@ -20,6 +20,15 @@ public class CustomerRepository : ICustomerRepository
 
     public Task<bool> CreateCustomer(Customer customer)
     {
+        if (string.IsNullOrEmpty(customer.CustomerRef))
+            return Task.FromResult(false);
+
+        if (customer == null) 
+            return Task.FromResult(false);
+
+        if (_dbContext.Customer.Any(c => c.CustomerRef == customer.CustomerRef)) 
+            return Task.FromResult(false);
+
         var success = true;
 
         using (var transaction = _dbContext.Database.BeginTransaction())
@@ -32,8 +41,8 @@ public class CustomerRepository : ICustomerRepository
             }
             catch (Exception ex)
             {
-                transaction.Rollback();
                 success = false;
+                transaction.Rollback();                
             }
         }
 

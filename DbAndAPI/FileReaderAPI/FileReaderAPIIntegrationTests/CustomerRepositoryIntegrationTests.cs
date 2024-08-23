@@ -91,6 +91,60 @@ public class CustomerRepositoryIntegrationTests
 
     #region Unhappy Path Tests
     [Fact]
+    public async Task CreateCustomer_CustomerRecordAlreadyInDatabase()
+    {
+        //Arrange
+        var customerRef = "customerTest";
+
+        var customerObject = new Customer
+        {
+            CustomerRef = customerRef,
+            CustomerName = "John Tester",
+            AddressLine1 = "Test House",
+            AddressLine2 = "Test Building",
+            Town = "Testmouth",
+            County = "Testshire",
+            Country = "Testland",
+            Postcode = "TE573RS"
+        };
+
+        _dbContext.Customer.Add(customerObject);
+        await _dbContext.SaveChangesAsync();
+
+        //Act
+        var result = await _repository.CreateCustomer(customerObject);
+
+        _dbContext.Customer.Remove(customerObject);
+        await _dbContext.SaveChangesAsync();
+
+        //Assert
+        Assert.False(result);
+    }
+
+    [Fact]
+    public async void CreateCustomer_NullCustomerProvided()
+    {
+        //Arrange - Act
+        var result = await _repository.CreateCustomer(null);
+
+        //Assert
+        Assert.False(result);
+    }
+
+    [Fact]
+    public async void CreateCustomer_EmptyCustomerProvided()
+    {
+        //Arrange
+        var customerObject = new Customer();
+
+        //Act
+        var result = await _repository.CreateCustomer(customerObject);
+
+        //Assert
+        Assert.False(result);
+    }
+
+    [Fact]
     public async void GetByCustomerRef_NoRecordFound()
     {
         //Arrange
