@@ -20,10 +20,10 @@ public class CustomerRepository : ICustomerRepository
 
     public Task<bool> CreateCustomer(Customer customer)
     {
-        if (string.IsNullOrEmpty(customer.CustomerRef))
+        if (customer == null)
             return Task.FromResult(false);
 
-        if (customer == null) 
+        if (string.IsNullOrEmpty(customer.CustomerRef))
             return Task.FromResult(false);
 
         if (_dbContext.Customer.Any(c => c.CustomerRef == customer.CustomerRef)) 
