@@ -89,6 +89,44 @@ public class CustomerRepositoryIntegrationTests
     }
     #endregion
 
+    #region Unhappy Path Tests
+    [Fact]
+    public async void GetByCustomerRef_NoRecordFound()
+    {
+        //Arrange
+        var customerRef = "customerTest";
+
+        //Act
+        var result = await _repository.GetByCustomerRef(customerRef);
+
+        //Assert
+        Assert.Null(result);
+    }
+
+    [Fact]
+    public async void GetByCustomerRef_NoRefProvided()
+    {
+        //Arrange
+        var customerRef = "";
+
+        //Act
+        var result = await _repository.GetByCustomerRef(customerRef);
+
+        //Assert
+        Assert.Null(result);
+    }
+
+    [Fact]
+    public async void GetByCustomerRef_NullRefProvided()
+    {
+        //Arrange - Act
+        var result = await _repository.GetByCustomerRef(null);
+
+        //Assert
+        Assert.Null(result);
+    }
+    #endregion
+
     private DbContextOptions<DatabaseDbContext> CreateOptions()
     {
         var builder = new ConfigurationBuilder()
