@@ -11,6 +11,7 @@ public class Main {
         System.out.println("Parsing CSV file located at: " + filePath);
         List<Customer> customers = CSVParser.ParseCSV(filePath);
 
+        System.out.println("Sending data to the database");
         String databaseUrl = "https://localhost:1701/Customer";
         boolean result = APICaller.SendCustomerDataToDatabase(customers, databaseUrl);
 

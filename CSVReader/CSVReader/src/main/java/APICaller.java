@@ -28,6 +28,8 @@ public class APICaller {
             jsonObject.put("country", customer.getCountry());
             jsonObject.put("postcode", customer.getPostcode());
 
+            System.out.println("Sending customer to database: " + customer.getCustomerRef());
+
             HttpResponse<JsonNode> response = Unirest.post(url)
                     .header("Content-Type", "application/json")
                     .body(jsonObject)
@@ -36,6 +38,9 @@ public class APICaller {
             if(response.getStatus() != 200){
                 result = false;
                 System.out.println(customer.getCustomerRef() + " was not inserted into the database");
+            }
+            else {
+                System.out.println(customer.getCustomerRef() + " inserted into the database");
             }
         }
         return result;
